@@ -4,13 +4,17 @@ module.exports = (sequelize) => {
   sequelize.define(
     "review",
     {
-      fieldOne: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      likes: {
+        type: DataTypes.BOOLEAN,
+        default: false,
       },
-      fieldTwo: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      dislikes: {
+        type: DataTypes.BOOLEAN,
+        default: false,
+      },
+      saved: {
+        type: DataTypes.BOOLEAN,
+        default: false,
       },
     },
     { timestamps: false }
