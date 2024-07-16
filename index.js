@@ -7,7 +7,6 @@ const populateUser = require("./src/seeders/populateUser.js");
 const populateAd = require("./src/seeders/populateAd.js");
 const populateReview = require("./src/seeders/populateReview.js");
 
-// Syncing all the models at once.
 conn
   .sync({ force: true })
   .then(() => {
