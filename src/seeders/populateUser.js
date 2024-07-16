@@ -20,6 +20,11 @@ async function populateUser() {
         email: "bob.johnson@company.com",
         password: await bcrypt.hash("1234", saltRounds),
       },
+      {
+        name: "Leo",
+        email: "leo@email.com",
+        password: await bcrypt.hash("1234", saltRounds),
+      },
     ]);
     console.log("User table populated successfully");
   } catch (error) {
