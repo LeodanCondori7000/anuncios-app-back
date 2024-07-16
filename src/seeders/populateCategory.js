@@ -4,13 +4,13 @@ async function populateCategory() {
   try {
     const categories = await Category.bulkCreate([
       {
-        name: "Vehiculos",
+        name: "vehiculos",
       },
       {
-        name: "Inmuebles",
+        name: "inmuebles",
       },
       {
-        name: "Trabajos",
+        name: "empleos",
       },
     ]);
     console.log("Category table populated successfully");

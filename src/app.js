@@ -3,7 +3,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
-
+const swaggerUI = require("swagger-ui-express");
+const swaggerJsdoc = require("swagger-jsdoc");
 require('./db.js');
 
 const server = express();
@@ -22,9 +23,40 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use('/', routes);
+server.use("/", routes);
 
-// Error catching endware.
+const options = {
+  definition: {
+    openapi: "3.1.0",
+    info: {
+      title: "Ads Express API with Swagger",
+      version: "0.1.0",
+      description:
+        "This is a simple CRUD API application made with Express and documented with Swagger",
+      license: {
+        name: "MIT",
+        url: "https://spdx.org/licenses/MIT.html",
+      },
+      contact: {
+        name: "Leodan",
+        url: "https://leodancondori.com",
+        email: "leodccc7@gmail.com",
+      },
+    },
+    servers: [
+      {
+        url: "http://localhost:3001",
+      },
+    ],
+  },
+  apis: ["./routes/*.js"],
+};
+
+const specs = swaggerJsdoc(options);
+
+// Serve Swagger documentation
+server.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = err.status || 500;
   const message = err.message || err;
